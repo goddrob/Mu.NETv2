@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "GamePanel";
+}
+
+@section featured {
+    <section class="featured">
+        <h2><span>Mu.NET v2 //</span> @ViewBag.Title</h2>
+    </section>
+}
+@section content {
+    @model Mu.NETv2.Models.ResetModel
+    <div id="generic_page">
+    <p id="error_message">@Model.errorMessage</p>
+
+    <table class="table_account">
+        <thead>
+            <tr>
+                <th><h1>Name</h1></th>
+                <th><h1>Class</h1></th>
+                <th><h1>Level</h1></th>
+                <th><h1>Resets</h1></th>
+                <th><h1>STR</h1></th>
+                <th><h1>DEX</h1></th>
+                <th><h1>VIT</h1></th>
+                <th><h1>ENG</h1></th>
+                <th><h1>CMD</h1></th>
+                <th><h1></h1></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in ViewBag.chars)
+            {
+                <tr>
+                    <td>@c.Name</td>
+                    <td>@c.Class</td>
+                    <td>@c.cLevel</td>
+                    <td>@c.Resets</td>
+                    <td>@c.Strength</td>
+                    <td>@c.Dexterity</td>
+                    <td>@c.Vitality</td>
+                    <td>@c.Energy</td>
+                    <td>@c.Leadership</td>
+                    @if (@Mu.NETv2.Configs.Config.isResetable(@c))
+                    {
+                        <td>
+                            @using (Html.BeginForm("ResetCh", "GamePanel"))
+                            {
+                                @Html.AntiForgeryToken()
+                                Model.name = c.Name;
+                                @Html.HiddenFor(m => m.name);
+                                <input type="submit" value="Reset" id="reset_button" />
+                            }
+                        </td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

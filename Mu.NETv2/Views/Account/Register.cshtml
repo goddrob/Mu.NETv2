@@ -1,0 +1,44 @@
+﻿@model Mu.NETv2.Models.RegisterModel
+@{
+    ViewBag.Title = "Register";
+}
+@section featured {
+    <section class="featured">
+        <h2><span>Mu.NET v2 //</span> @ViewBag.Title</h2>
+    </section>
+}
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Create a new account.</h2>
+</hgroup>
+@section content{
+@using (Html.BeginForm()) {
+    <div class="listform">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+
+            <ol>
+                <li>
+                    @Html.LabelFor(m => m.memb___id)
+                    @Html.TextBoxFor(m => m.memb___id)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.memb__pwd)
+                    @Html.PasswordFor(m => m.memb__pwd)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.ConfirmPassword)
+                    @Html.PasswordFor(m => m.ConfirmPassword)
+                </li>
+                <li>
+                    @Html.LabelFor( m => m.mail_addr)
+                    @Html.TextBoxFor( m => m.mail_addr)
+                </li>
+            </ol>
+            <input type="submit" value="Register" class="read_more2" />
+            </div>
+        }
+        }
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
