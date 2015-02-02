@@ -1,0 +1,59 @@
+﻿@model Mu.NETv2.Models.LoginModel
+
+@{
+    ViewBag.Title = "Log in";
+}
+
+@section featured {
+    <section class="featured">
+        <h2><span>Mu.NET v2 //</span> @ViewBag.Title</h2>
+    </section>
+}
+@section content {
+    @*<div id="post_wrapper">
+        <div id="response" class="contact_form">*@
+                @*<h2>Use Mu Online account to log in.</h2>
+            <p>
+                @Html.ActionLink("Register", "Register") if you don't have an account.
+            </p>*@
+
+    @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+    {
+        @*<div class="form_left">*@
+            <div class="listform">
+                <ol>
+                    <li>
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                    
+                    <li>
+                        @Html.LabelFor(m => m.memb___id)
+                        @Html.TextBoxFor(m => m.memb___id)
+                        @Html.ValidationMessageFor(m => m.memb___id)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.memb__pwd)
+                        @Html.PasswordFor(m => m.memb__pwd)
+                        @Html.ValidationMessageFor(m => m.memb__pwd)
+                    </li>
+                    <li>
+                        @Html.CheckBoxFor(m => m.RememberMe)
+                        @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+                    </li>
+                </ol>
+                <input type="submit" value="Log in" class="read_more2" />
+            </div>
+        @*</div>*@
+        @*<div class="form_right">
+
+        </div>*@
+        @*<div class="form_submit"><input type="submit" value="Log in" class="read_more2" /></div>*@
+    }
+     @*</div>
+            <div class="clear"></div>
+    </div>*@
+                }
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

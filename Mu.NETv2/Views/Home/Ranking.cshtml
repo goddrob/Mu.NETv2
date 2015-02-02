@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Ranking";
+}
+@section featured {
+    <section class="featured">
+        <h2><span>Mu.NET v2 //</span> @ViewBag.Title</h2>
+    </section>
+}
+@section content{
+    <div id="generic_page">
+    <table class="table_account">
+        <thead>
+            <tr>
+                <th><h1>Rank</h1></th>
+                <th><h1>Name</h1></th>
+                <th><h1>Class</h1></th>
+                <th><h1>Level</h1></th>
+                <th><h1>Resets</h1></th>
+                <th><h1>Guild</h1></th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th colspan="6">
+                    Last updated: @ViewBag.Updated (UTC)
+                </th>
+            </tr>
+        </tfoot>
+        <tbody>
+            @{int i = 1;}
+            @foreach (var c in ViewBag.Characters)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@c.Name</td>
+                    <td>@Mu.NETv2.Configs.Config.getClass(c.Class)</td>
+                    <td>@c.cLevel</td>
+                    <td>@c.Resets</td>
+                    <td>@c.Guild</td>
+                </tr>
+                i++;
+            }
+        </tbody>
+        
+    </table>
+</div>
+    }
